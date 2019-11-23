@@ -39,6 +39,10 @@ const AddInsp = () => {
 
   return (
     <div>
+      <Typography style={{ textAlign: "center" }} variant="h4">
+        Add Inspection Form
+      </Typography>
+      <br />
       <form
         className={{ display: "flex", flexWrap: "wrap" }}
         noValidate

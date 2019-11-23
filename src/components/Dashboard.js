@@ -4,7 +4,6 @@ import HomeInspList from "./HomeInspList";
 const Dashboard = () => {
   return (
     <div>
-      <div>This is the dashboard</div>
       <HomeInspList />
     </div>
   );
