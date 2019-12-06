@@ -5,13 +5,11 @@ import Navi from "./components/Navi";
 import { connect } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import { getInspections } from "./store/inspections/actions";
-import { getMembers } from "./store/members/actions";
 import "./App.css";
 
 class App extends React.Component {
   componentDidMount() {
     this.props.dispatch(getInspections());
-    this.props.dispatch(getMembers());
   }
   render() {
     return (
