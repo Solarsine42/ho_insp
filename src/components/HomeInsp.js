@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import DeleteInsp from "./DeleteInsp";
+import DeleteInsp from "./DeleteInsp";
 import ModifyInsp from "./ModifyInsp";
 import { makeStyles } from "@material-ui/core/styles";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
@@ -10,7 +10,6 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Container from "@material-ui/core/Container";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import Button from "@material-ui/core/Button";
 import { connect } from "react-redux";
 
 const useStyles = makeStyles(theme => ({
@@ -39,15 +38,6 @@ const HomeInsp = props => {
   const inspection = props.inspection;
   const classes = useStyles();
   const [expanded, setExpanded] = useState(false);
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   const handleChange = panel => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
@@ -101,14 +91,14 @@ const HomeInsp = props => {
             </Grid>
           </ExpansionPanelDetails>
           <ExpansionPanelDetails>
-            <Button
-              variant="outlined"
-              color="primary"
-              onClick={handleClickOpen}
-            >
-              Open form dialog
-            </Button>
-            <ModifyInsp />
+            <Grid container spacing={3}>
+              <Grid item xs={6}>
+                <ModifyInsp />
+              </Grid>
+              <Grid item xs={6}>
+                <DeleteInsp />
+              </Grid>
+            </Grid>
           </ExpansionPanelDetails>
         </Container>
       </ExpansionPanel>
