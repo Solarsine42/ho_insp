@@ -38,7 +38,7 @@ const Navi = () => {
   return (
     <div className={classes.root}>
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar style={{ backgroundColor: "#12395B" }}>
           <div>
             <IconButton
               edge="start"
