@@ -1,15 +1,15 @@
 import React from "react";
+import { deleteInspection } from "../store/inspections/actions";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
 import Fab from "@material-ui/core/Fab";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { connect } from "react-redux";
 
-const DeleteInsp = () => {
+const DeleteInsp = props => {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -35,21 +35,24 @@ const DeleteInsp = () => {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">
-          {"Use Google's location service?"}
-        </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Let Google help apps determine location. This means sending
-            anonymous location data to Google, even when no apps are running.
+            Delete Inspection for {props.inspection.address}?
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
-            Disagree
+            Back
           </Button>
-          <Button onClick={handleClose} color="primary" autoFocus>
-            Agree
+          <Button
+            onClick={() => {
+              props.dispatch(deleteInspection(props.inspection.id));
+              setOpen(false);
+            }}
+            color="secondary"
+            autoFocus
+          >
+            Delete
           </Button>
         </DialogActions>
       </Dialog>

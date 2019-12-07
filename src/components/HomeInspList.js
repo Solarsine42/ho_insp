@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import HomeInsp from "./HomeInsp";
 import { connect } from "react-redux";
 import TextField from "@material-ui/core/TextField";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -12,6 +12,28 @@ const useStyles = makeStyles(theme => ({
     }
   }
 }));
+
+const CssTextField = withStyles({
+  root: {
+    "& label.Mui-focused": {
+      color: "#12395B"
+    },
+    "& .MuiInput-underline:after": {
+      borderBottomColor: "#12395B"
+    },
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "#12395B"
+      },
+      "&:hover fieldset": {
+        borderColor: "#12395B"
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: "#12395B"
+      }
+    }
+  }
+})(TextField);
 
 const HomeInspList = props => {
   const classes = useStyles();
@@ -25,7 +47,7 @@ const HomeInspList = props => {
   return (
     <div>
       <form className={classes.root} noValidate autoComplete="off">
-        <TextField
+        <CssTextField
           label="Member Number"
           variant="outlined"
           name="search"

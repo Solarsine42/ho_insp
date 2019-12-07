@@ -101,10 +101,10 @@ const HomeInsp = props => {
           <ExpansionPanelDetails>
             <Grid container spacing={3}>
               <Grid item xs={3}>
-                <ModifyInsp />
+                <ModifyInsp inspection={inspection} />
               </Grid>
               <Grid item xs={2}>
-                <DeleteInsp />
+                <DeleteInsp inspection={inspection} />
               </Grid>
             </Grid>
           </ExpansionPanelDetails>

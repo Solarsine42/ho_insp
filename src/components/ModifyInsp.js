@@ -1,17 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
+import { connect } from "react-redux";
+import { editInspection } from "../store/inspections/actions";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Fab from "@material-ui/core/Fab";
 import EditIcon from "@material-ui/icons/Edit";
-import { connect } from "react-redux";
+import { makeStyles } from "@material-ui/core/styles";
 
-const ModifyInsp = () => {
+const useStyles = makeStyles(theme => ({
+  root: {
+    "& .MuiTextField-root": {
+      margin: theme.spacing(1),
+      width: 200
+    }
+  }
+}));
+
+const ModifyInsp = props => {
+  const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const [editContactInfo, setEditContactInfo] = useState(
+    props.inspection.contact_info
+  );
+  const [editSpecInstr, setEditSpecInstr] = useState(
+    props.inspection.special_instructions
+  );
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -35,27 +52,50 @@ const ModifyInsp = () => {
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
       >
-        <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+        <DialogTitle id="form-dialog-title">Inspection Editor</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            To subscribe to this website, please enter your email address here.
-            We will send updates occasionally.
-          </DialogContentText>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Email Address"
-            type="email"
-            fullWidth
-          />
+          <form className={classes.root} noValidate autoComplete="off">
+            <div>
+              <TextField
+                label="Contact Phone"
+                helperText="If there is a secondary number, add to special instructions"
+                variant="outlined"
+                name="contact_info"
+                value={editContactInfo}
+                onChange={e => setEditContactInfo(e.target.value)}
+                required
+              />
+              <TextField
+                multiline
+                label="Special Instructions"
+                variant="outlined"
+                name="special_instructions"
+                value={editSpecInstr}
+                onChange={e => setEditSpecInstr(e.target.value)}
+              />
+            </div>
+          </form>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
-            Cancel
+            Back
           </Button>
-          <Button onClick={handleClose} color="primary">
-            Subscribe
+          <Button
+            onClick={() => {
+              props.dispatch(
+                editInspection(
+                  {
+                    contact_info: editContactInfo,
+                    special_instructions: editSpecInstr
+                  },
+                  props.inspection.id
+                )
+              );
+              setOpen(false);
+            }}
+            color="secondary"
+          >
+            Submit
           </Button>
         </DialogActions>
       </Dialog>

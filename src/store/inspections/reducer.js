@@ -44,7 +44,9 @@ export default (state = initialState, action) => {
     case DELETE_INSPECTION_SUCCESS:
       return {
         ...state,
-        all: state.all.filter(inspection => inspection.id === action.payload.id)
+        all: state.all.filter(
+          inspection => inspection.id !== action.payload[0].id
+        )
       };
     case EDIT_INSPECTION_SUCCESS:
       return { all: [...state.all, action.payload] };
