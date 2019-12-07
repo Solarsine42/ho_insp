@@ -92,10 +92,10 @@ const HomeInsp = props => {
           </ExpansionPanelDetails>
           <ExpansionPanelDetails>
             <Grid container spacing={3}>
-              <Grid item xs={6}>
+              <Grid item xs={3}>
                 <ModifyInsp />
               </Grid>
-              <Grid item xs={6}>
+              <Grid item xs={2}>
                 <DeleteInsp />
               </Grid>
             </Grid>

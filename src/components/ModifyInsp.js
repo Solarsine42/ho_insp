@@ -23,16 +23,13 @@ const ModifyInsp = () => {
 
   return (
     <div>
-      <Fab color="secondary" aria-label="edit" onClick={handleClickOpen}>
-        <EditIcon />
-      </Fab>
-      {/* <Button
-        variant="outlined"
-        style={{ color: "#fac705" }}
+      <Fab
+        style={{ backgroundColor: "#FFDD00" }}
+        aria-label="edit"
         onClick={handleClickOpen}
       >
-        Open form dialog
-      </Button> */}
+        <EditIcon />
+      </Fab>
       <Dialog
         open={open}
         onClose={handleClose}

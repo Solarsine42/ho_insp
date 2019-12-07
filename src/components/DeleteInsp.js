@@ -5,6 +5,8 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import Fab from "@material-ui/core/Fab";
+import DeleteIcon from "@material-ui/icons/Delete";
 import { connect } from "react-redux";
 
 const DeleteInsp = () => {
@@ -20,13 +22,13 @@ const DeleteInsp = () => {
 
   return (
     <div>
-      <Button
-        variant="outlined"
-        style={{ color: "#fac705" }}
+      <Fab
+        style={{ backgroundColor: "#FF4C4C" }}
+        aria-label="delete"
         onClick={handleClickOpen}
       >
-        Open alert dialog
-      </Button>
+        <DeleteIcon />
+      </Fab>
       <Dialog
         open={open}
         onClose={handleClose}
