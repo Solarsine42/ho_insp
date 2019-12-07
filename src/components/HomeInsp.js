@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1
   },
   paper: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(1.5),
     textAlign: "center",
     color: theme.palette.text.primary
   },
@@ -66,26 +66,34 @@ const HomeInsp = props => {
             <Grid container spacing={3}>
               <Grid item xs={6}>
                 <Paper className={classes.paper}>
-                  Policy: {inspection.policy_number}
+                  <Typography variant="subtitle2">
+                    Policy: {inspection.policy_number}
+                  </Typography>
                 </Paper>
               </Grid>
               <Grid item xs={6}>
                 <Paper className={classes.paper}>
-                  Contact: {inspection.contact_info}
+                  <Typography variant="subtitle2">
+                    Contact: {inspection.contact_info}
+                  </Typography>
                 </Paper>
               </Grid>
               <Grid item xs={6}>
                 <Paper className={classes.paper}>
-                  Inspector Assigned:{" "}
-                  {inspection.inspector_id ? inspection.inspector_id : "None"}
+                  <Typography variant="subtitle2">
+                    Inspector Assigned:{" "}
+                    {inspection.inspector_id ? inspection.inspector_id : "None"}
+                  </Typography>
                 </Paper>
               </Grid>
               <Grid item xs={6}>
                 <Paper className={classes.paper}>
-                  Special Instructions:{" "}
-                  {inspection.special_instructions
-                    ? inspection.special_instructions
-                    : "None"}
+                  <Typography variant="subtitle2">
+                    Special Instructions:{" "}
+                    {inspection.special_instructions
+                      ? inspection.special_instructions
+                      : "None"}
+                  </Typography>
                 </Paper>
               </Grid>
             </Grid>
