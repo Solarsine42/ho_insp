@@ -25,13 +25,9 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case LOAD_INSPECTIONS_PENDING:
-      return state;
     case LOAD_INSPECTION_PENDING:
-      return state;
     case ADD_INSPECTION_PENDING:
-      return state;
     case DELETE_INSPECTION_PENDING:
-      return state;
     case EDIT_INSPECTION_PENDING:
       return state;
 
@@ -49,16 +45,24 @@ export default (state = initialState, action) => {
         )
       };
     case EDIT_INSPECTION_SUCCESS:
-      return { all: [...state.all, action.payload] };
+      return {
+        ...state,
+        all: state.all.reduce((acc, inspection) => {
+          if (!acc.includes(inspection.id)) {
+            if (inspection.id === action.payload.id) {
+              acc.push(action.payload);
+            } else {
+              acc.push(inspection);
+            }
+          }
+          return acc;
+        }, [])
+      };
 
     case LOAD_INSPECTIONS_FAILURE:
-      return { ...state, err: action.payload };
     case LOAD_INSPECTION_FAILURE:
-      return { ...state, err: action.payload };
     case ADD_INSPECTION_FAILURE:
-      return { ...state, err: action.payload };
     case DELETE_INSPECTION_FAILURE:
-      return { ...state, err: action.payload };
     case EDIT_INSPECTION_FAILURE:
       return { ...state, err: action.payload };
 
