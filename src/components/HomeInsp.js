@@ -43,10 +43,6 @@ const HomeInsp = props => {
     setExpanded(isExpanded ? panel : false);
   };
 
-  // const updateParentState = () => {
-  //   window.location.reload();
-  // };
-
   return (
     <div className={classes.root} style={{ padding: "5px" }}>
       <ExpansionPanel
@@ -105,10 +101,7 @@ const HomeInsp = props => {
           <ExpansionPanelDetails>
             <Grid container spacing={3}>
               <Grid item xs={3}>
-                <ModifyInsp
-                  // updateParentState={updateParentState}
-                  inspection={inspection}
-                />
+                <ModifyInsp inspection={inspection} />
               </Grid>
               <Grid item xs={2}>
                 <DeleteInsp inspection={inspection} />

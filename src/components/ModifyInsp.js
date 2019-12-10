@@ -91,7 +91,7 @@ const ModifyInsp = props => {
                   props.inspection.id
                 )
               );
-              // props.updateParentState();
+              setOpen(false);
             }}
             color="secondary"
           >
