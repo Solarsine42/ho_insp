@@ -91,7 +91,7 @@ const ModifyInsp = props => {
                   props.inspection.id
                 )
               );
-              setOpen(false);
+              // props.updateParentState();
             }}
             color="secondary"
           >
@@ -103,4 +103,10 @@ const ModifyInsp = props => {
   );
 };
 
-export default connect()(ModifyInsp);
+function mapStateToProps(state) {
+  return {
+    inspections: state.inspections.all
+  };
+}
+
+export default connect(mapStateToProps)(ModifyInsp);

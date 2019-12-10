@@ -48,12 +48,10 @@ export default (state = initialState, action) => {
       return {
         ...state,
         all: state.all.reduce((acc, inspection) => {
-          if (!acc.includes(inspection.id)) {
-            if (inspection.id === action.payload.id) {
-              acc.push(action.payload);
-            } else {
-              acc.push(inspection);
-            }
+          if (inspection.id === action.payload[0].id) {
+            acc.push(action.payload[0]);
+          } else {
+            acc.push(inspection);
           }
           return acc;
         }, [])
