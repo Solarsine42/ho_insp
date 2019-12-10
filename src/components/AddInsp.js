@@ -24,8 +24,7 @@ const AddInsp = () => {
         <div>
           <TextField
             required
-            id="outlined-required"
-            label="Required"
+            label="Member #"
             defaultValue="Hello World"
             variant="outlined"
           />
