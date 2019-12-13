@@ -36,7 +36,7 @@ export default (state = initialState, action) => {
     case LOAD_INSPECTION_SUCCESS:
       return { ...state, inspection: action.payload };
     case ADD_INSPECTION_SUCCESS:
-      return { ...state, all: [...state.all, action.payload] };
+      return { ...state, all: [...state.all, action.payload[0]] };
     case DELETE_INSPECTION_SUCCESS:
       return {
         ...state,

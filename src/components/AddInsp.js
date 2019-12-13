@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
+import { connect } from "react-redux";
+import { addInspection } from "../store/inspections/actions";
 import TextField from "@material-ui/core/TextField";
+import FormControl from "@material-ui/core/FormControl";
 import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import Icon from "@material-ui/core/Icon";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
@@ -12,71 +17,101 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const AddInsp = () => {
+const AddInsp = props => {
   const classes = useStyles();
+  const [memberNumber, setMemberNumber] = useState("");
+  const [policyNumber, setPolicyNumber] = useState("");
+  const [address, setAddress] = useState("");
+  const [contactInfo, setContactInfo] = useState("");
+  const [specialInstr, setSpecialInstr] = useState("");
   return (
     <div>
       <Typography style={{ textAlign: "center" }} variant="h4">
         Add Inspection Form
       </Typography>
       <br />
-      <form className={classes.root} noValidate autoComplete="off">
+      <form
+        onSubmit={() => {
+          props.dispatch(
+            addInspection({
+              address: address,
+              contact_info: contactInfo,
+              inspector_id: null,
+              member_number: Number(memberNumber),
+              policy_number: policyNumber,
+              special_instructions: specialInstr
+            })
+          );
+          props.history.push("/");
+        }}
+        className={classes.root}
+      >
         <div>
           <TextField
             required
             label="Member #"
-            defaultValue="Hello World"
+            value={memberNumber}
+            onChange={e => setMemberNumber(e.target.value)}
             variant="outlined"
           />
           <TextField
-            disabled
-            id="outlined-disabled"
-            label="Disabled"
-            defaultValue="Hello World"
+            required
+            label="Policy #"
+            value={policyNumber}
+            onChange={e => setPolicyNumber(e.target.value)}
             variant="outlined"
           />
           <TextField
-            id="outlined-password-input"
-            label="Password"
-            type="password"
-            autoComplete="current-password"
+            required
+            label="Address"
+            value={address}
+            onChange={e => setAddress(e.target.value)}
             variant="outlined"
           />
           <TextField
-            id="outlined-read-only-input"
-            label="Read Only"
-            defaultValue="Hello World"
-            InputProps={{
-              readOnly: true
-            }}
+            required
+            placeholder="XXX-XXX-XXXX"
+            label="Contact Info"
+            value={contactInfo}
+            onChange={e => setContactInfo(e.target.value)}
             variant="outlined"
+            helperText="(Dashes only)"
           />
-          <TextField
-            id="outlined-number"
-            label="Number"
-            type="number"
-            InputLabelProps={{
-              shrink: true
-            }}
-            variant="outlined"
-          />
-          <TextField
-            id="outlined-search"
-            label="Search field"
-            type="search"
-            variant="outlined"
-          />
-          <TextField
-            id="outlined-helperText"
-            label="Helper text"
-            defaultValue="Default Value"
-            helperText="Some important text"
-            variant="outlined"
-          />
+          <div>
+            <FormControl fullWidth>
+              <TextField
+                style={{ width: "86%" }}
+                multiline
+                label="Special Instructions"
+                value={specialInstr}
+                onChange={e => setSpecialInstr(e.target.value)}
+                variant="outlined"
+                helperText="Specific location directions, additional contact info, special conditions or concerns"
+              />
+            </FormControl>
+          </div>
+          <div style={{ marginLeft: "37%", marginTop: "20px" }}>
+            <Button
+              style={{ backgroundColor: "#12395B" }}
+              variant="contained"
+              color="primary"
+              className={classes.button}
+              endIcon={<Icon>send</Icon>}
+              type="submit"
+            >
+              Send
+            </Button>
+          </div>
         </div>
       </form>
     </div>
   );
 };
 
-export default AddInsp;
+function mapStateToProps(state) {
+  return {
+    inspections: state.inspections.all
+  };
+}
+
+export default connect(mapStateToProps)(AddInsp);

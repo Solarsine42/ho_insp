@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
 
 const ModifyInsp = props => {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const [editContactInfo, setEditContactInfo] = useState(
     props.inspection.contact_info
   );
