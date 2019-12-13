@@ -71,7 +71,7 @@ const AddInsp = props => {
           <TextField
             required
             placeholder="XXX-XXX-XXXX"
-            label="Contact Info"
+            label="Contact Phone"
             value={contactInfo}
             onChange={e => setContactInfo(e.target.value)}
             variant="outlined"
@@ -90,9 +90,13 @@ const AddInsp = props => {
               />
             </FormControl>
           </div>
-          <div style={{ marginLeft: "37%", marginTop: "20px" }}>
+          <div style={{ marginTop: "20px" }}>
             <Button
-              style={{ backgroundColor: "#12395B" }}
+              style={{
+                width: "40%",
+                margin: "0 30% 0 30%",
+                backgroundColor: "#12395B"
+              }}
               variant="contained"
               color="primary"
               className={classes.button}
